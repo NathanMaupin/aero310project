@@ -1,0 +1,23 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Apr 27 16:51:59 2022
+
+@author: Nathan Maupin
+"""
+# Problem 
+
+from scipy.integrate import solve_ivp
+from numpy import pi,sin,cos, linspace, array, diag, cross, hstack, transpose
+from numpy.linalg import norm, solve, det, inv
+import matplotlib.pyplot as plt
+
+m = 1 #kg
+L = 1 #m
+r = 0.05 #m
+g = 9.806 #m/s^2
+k = 1 #N/m
+theta0 = [30, 60]
+phi0 = [0, 15]
+omega0 = [5, 90]
+
+
