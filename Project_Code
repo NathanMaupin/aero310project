@@ -7,6 +7,7 @@ Created on Wed Apr 27 16:51:59 2022
 
 #Problem 1
 import sympy as sp
+import math
 
 # Knowns and Unknowns
 a1, a2, a3 = sp.symbols('a1 a2 a3')
@@ -16,14 +17,18 @@ c1, c2, c3 = sp.symbols('c1 c2 c3')
 d1, d2, d3 = sp.symbols('d1 d2 d3')
 Ta1, Ta2, Tb1, Tb2, Tc1, Tc2, Td1, Td2 = sp.symbols('Ta1 Ta2 Tb1 Tb2 Tc1 Tc2 Td1 Td2')
 theta, theta1, theta2 = sp.symbols('theta theta1 theta2')
-omega, L, L0, k = sp.symbols('omega L L0 k')
+omega, L, L0, k, mg = sp.symbols('omega L L0 k mg')
+Fa = k*(2*math.sin(theta/2)- L0) #n1
+Fb = -1*k*(2*math.cos(theta/2) - L0) #n2
+
 unknowns = [a1, a2, a3, ap1, ap2, ap3, b1, b2, b3, c1, c2, c3, d1, d2, d3, Ta1, 
             Ta2, Tb1, Tb2, Tc1, Tc2, Td1, Td2, theta2]
-knowns = [theta, theta1, omega, L, L0, k]
+knowns = [theta, theta1, omega, L, L0, k, mg]
 
-# 24 linear equations
-eqs = []
+# 24 linear equations in N frame - convert to A frame
+eqs = [a1 + b1 + Fb, a2 - Fa - mg + b2]
 
+"""
 # Problem 2
 from scipy.integrate import solve_ivp
 from numpy import pi,sin,cos, linspace, array, diag, cross, hstack, transpose
@@ -49,3 +54,4 @@ pos_phi = None
 
 t = linspace(t0,tf, 200) # determine solution at these times
 x = sol.sol(t)
+"""
